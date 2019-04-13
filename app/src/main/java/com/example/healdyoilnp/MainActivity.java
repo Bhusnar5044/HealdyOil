@@ -30,9 +30,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int images[] = {R.drawable.img1, R.drawable.img2,R.drawable.img3,R.drawable.img4,R.drawable.img5,R.drawable.img6,R.drawable.img7};
         v_flipper = findViewById(R.id.v_flipper);
 
-       /* for(int image: images){
-            flipperImages(image);
-        }*/
+        for(int image: images){
+            //flipperImages(image);
+        }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
