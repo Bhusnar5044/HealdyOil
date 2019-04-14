@@ -108,7 +108,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //                    setTitle("Home");
                 break;
             case R.id.nav_profile:
-
+                Intent i1=new Intent(this,ProfileActivity.class);
+                startActivity(i1);
            break;
             case R.id.nav_mywishlist:
 

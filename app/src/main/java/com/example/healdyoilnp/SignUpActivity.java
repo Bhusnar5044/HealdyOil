@@ -25,10 +25,11 @@ import com.google.firebase.database.FirebaseDatabase;
 public class SignUpActivity extends AppCompatActivity {
     EditText name;
     EditText email;
+    EditText contact;
     EditText password;
     Button loginb,registerb;
 
-    private String nametxt,emailtxt,passtxt;
+    private String nametxt,emailtxt,contacttxt,passtxt;
 
     private ProgressBar progressBar;
 
@@ -45,6 +46,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         name=(EditText) findViewById(R.id.txtName);
         email=(EditText) findViewById(R.id.txtEmail);
+        contact=(EditText) findViewById(R.id.txtcontact);
         password=(EditText) findViewById(R.id.txtpassword);
         loginb=(Button)findViewById(R.id.btnLogin);
         registerb=(Button)findViewById(R.id.btnLogin2);
@@ -88,7 +90,7 @@ public class SignUpActivity extends AppCompatActivity {
     {
         FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
         DatabaseReference databaseReference=firebaseDatabase.getReference(firebaseAuth.getUid());
-        Members members=new Members(nametxt,emailtxt,passtxt);
+        Members members=new Members(nametxt,emailtxt,contacttxt,passtxt);
         databaseReference.setValue(members);
         Toast.makeText(getApplicationContext(),"Data Inserted",Toast.LENGTH_SHORT).show();
 
@@ -98,6 +100,7 @@ public class SignUpActivity extends AppCompatActivity {
         boolean result=false;
         nametxt=name.getText().toString();
         emailtxt=email.getText().toString();
+        contacttxt=contact.getText().toString();
         passtxt=password.getText().toString();
 
         if(nametxt.isEmpty()&&emailtxt.isEmpty()&&passtxt.isEmpty())
