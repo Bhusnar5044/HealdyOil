@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1093193936371",
+    "firebase_url": "https://healthyoil.firebaseio.com",
+    "project_id": "healthyoil",
+    "storage_bucket": "healthyoil.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1093193936371:android:dfbd5c69dd86a17f",
+        "android_client_info": {
+          "package_name": "com.example.healdyoilnp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1093193936371-rs9pjj19djq3bdaiqif4qf1mlml5koq1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkPQdbNyIG2iidbtjG0mgM1qepQuKyD9E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1093193936371-rs9pjj19djq3bdaiqif4qf1mlml5koq1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

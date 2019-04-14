@@ -1,12 +1,7 @@
 package com.example.healdyoilnp;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -22,6 +17,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 {
     private DrawerLayout drawer;
     ViewFlipper v_flipper;
+   // WebView webview;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,8 +28,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         v_flipper = findViewById(R.id.v_flipper);
 
         for(int image: images){
-            //flipperImages(image);
+            flipperImages(image);
         }
+
+//        webview = findViewById(R.id.webview);
+//        WebSettings ws = webview.getSettings();
+//        ws.setJavaScriptEnabled(true);
+//        webview.loadUrl("file:///android_assets/almond_oil.html");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -73,9 +75,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_Login) {
+            Intent intent=new Intent(this,LoginActivity.class);
+            startActivity(intent);
             return true;
         }
         else if(id==R.id.action_Logout){
+            Intent intent=new Intent(this,SignUpActivity.class);
+            startActivity(intent);
             return true;
         }
         else if(id==R.id.action_settings){
@@ -89,27 +95,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        Fragment fragment=null;
+
         int id = item.getItemId();
         switch(id) {
             case R.id.nav_home:
-                fragment=new homeFragment();
+
 //                    setTitle("Home");
                 break;
             case R.id.nav_profile:
-                fragment = new profileFragment();
+
            break;
             case R.id.nav_mywishlist:
-                fragment = new myWishlistfragment();
+
                 break;
             case R.id.nav_chat:
-                fragment = new chatfragment();
+
                 break;
             case R.id.nav_cart:
-                fragment = new cartfragment();
+
                 break;
             case R.id.nav_myorder:
-                fragment = new myorderfragment();
+
                 break;
             case R.id.nav_myaddress:
                 break;
@@ -117,29 +123,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.nav_send:
-                fragment = new cartfragment();
+
                 break;
             case R.id.nav_rateus:
                 break;
 
 
         }
-        getSupportFragmentManager().beginTransaction().replace(R.id.screen_area,fragment).commit();
+
         return true;
 
     }
 
-  /* private void flipperImages(int image) {
-        ImageView imageView = new ImageView(this);
-        imageView.setBackgroundResource(image);
-        v_flipper.addView(imageView);
-        v_flipper.setFlipInterval(3000); // 3 sec
-        v_flipper.setAutoStart(true);
+   private void flipperImages(int image) {
+       ImageView imageView = new ImageView(this);
+       imageView.setBackgroundResource(image);
+       v_flipper.addView(imageView);
+       v_flipper.setFlipInterval(3000); // 3 sec
+       v_flipper.setAutoStart(true);
 
-        // animation
+       // animation
 
-        v_flipper.setInAnimation(this, android.R.anim.slide_in_left);
-        v_flipper.setOutAnimation(this, android.R.anim.slide_out_right);
+       v_flipper.setInAnimation(this, android.R.anim.slide_in_left);
+       v_flipper.setOutAnimation(this, android.R.anim.slide_out_right);
 
-    }*/
+   }
 }
