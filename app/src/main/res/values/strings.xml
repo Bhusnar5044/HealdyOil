@@ -49,4 +49,8 @@
     </string>
     <string name="title_activity_sign_up">Sign Up</string>
 
+    <string name="almonds">Almond Oil</string>
+    <string name="coconut">Coconut Oil</string>
+    <string name="peanut">Peanut Oil</string>
+    <string name="sunflower">Sunflower Oil</string>
 </resources>

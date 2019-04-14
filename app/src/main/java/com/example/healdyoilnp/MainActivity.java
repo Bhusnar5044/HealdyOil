@@ -17,14 +17,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 {
     private DrawerLayout drawer;
     ViewFlipper v_flipper;
-   // WebView webview;
+
+    String[] waterCategory={"Water treatment","Distribution"};
+
+    // WebView webview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        int images[] = {R.drawable.img1, R.drawable.img2,R.drawable.img3,R.drawable.img4,R.drawable.img5,R.drawable.img6,R.drawable.img7};
+        int images[] = {R.drawable.almondiv,R.drawable.coconutsiv,R.drawable.peanutiv,R.drawable.sunfloweriv,};
         v_flipper = findViewById(R.id.v_flipper);
 
         for(int image: images){
@@ -99,6 +102,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
         switch(id) {
             case R.id.nav_home:
+                 Intent i= new Intent(this,MainActivity.class);
+                 startActivity(i);
 
 //                    setTitle("Home");
                 break;
