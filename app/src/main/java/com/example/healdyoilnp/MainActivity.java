@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
@@ -80,7 +81,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return true;
         }
         else if(id==R.id.action_Logout){
-            Intent intent1=new Intent(this,SignUpActivity.class);
+            Toast.makeText(this,"You are Logged out",Toast.LENGTH_SHORT).show();;
+            Intent intent1=new Intent(this,MainActivity.class);
             startActivity(intent1);
             return true;
         }

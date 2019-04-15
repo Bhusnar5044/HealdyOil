@@ -21,7 +21,6 @@
         android:id="@+id/txtName"
         android:layout_width="385dp"
         android:layout_height="48dp"
-        android:layout_marginTop="70dp"
         android:autofillHints=""
         android:background="@android:color/transparent"
         android:drawableLeft="@drawable/ic_person_black_24dp"
@@ -74,6 +73,23 @@
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionUnspecified"
         android:inputType="textPassword"
+        android:maxLines="1"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/txtaddress"
+        android:layout_width="390dp"
+        android:layout_height="104dp"
+        android:layout_marginTop="4dp"
+        android:background="@android:color/transparent"
+        android:drawableLeft="@drawable/ic_home_black_24dp"
+        android:drawablePadding="12dp"
+        android:ems="10"
+        android:hint="Address"
+        android:imeActionId="6"
+        android:imeActionLabel="@string/action_sign_in_short"
+        android:imeOptions="actionUnspecified"
+        android:inputType="textPostalAddress"
         android:maxLines="1"
         android:singleLine="true" />
 

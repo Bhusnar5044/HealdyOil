@@ -31,6 +31,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,16 +54,24 @@ public class LoginActivity extends AppCompatActivity  {
    EditText email;
    EditText password;
    Button loginb,registerb;
-    private String emailtxt,passtxt;
+    private String emailtxt,passtxt,uid;
     private ProgressDialog progressDialog;
 
    private FirebaseAuth firebaseAuth;
+    private FirebaseUser user;
+
+    ListView l1;
+    ArrayAdapter<String> adapter;
+    List<String> itemlist;
+    Userprofile info;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
 
        // progressDialog=new ProgressDialog(this);
         try {
@@ -72,6 +81,17 @@ public class LoginActivity extends AppCompatActivity  {
         {
             Toast.makeText(this,e.toString(),Toast.LENGTH_LONG).show();
         }
+
+        try {
+            user = firebaseAuth.getCurrentUser();
+        }
+        catch(Exception e1)
+        {
+            Toast.makeText(this,e1.toString(),Toast.LENGTH_LONG).show();
+        }
+
+        uid=user.getUid();
+
         email=(EditText) findViewById(R.id.email);
         password=(EditText) findViewById(R.id.password);
         loginb=(Button)findViewById(R.id.login);
@@ -87,7 +107,7 @@ public class LoginActivity extends AppCompatActivity  {
         if (emailtxt.isEmpty() || passtxt.isEmpty()) {
             Toast.makeText(this, "Plaese fill all the fields", Toast.LENGTH_SHORT).show();
         } else {
-            validate(email.getText().toString(), password.getText().toString());
+            //validate(email.getText().toString(), password.getText().toString());
 
         }
 

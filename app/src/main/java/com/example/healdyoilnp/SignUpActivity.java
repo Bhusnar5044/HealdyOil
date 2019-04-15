@@ -27,9 +27,10 @@ public class SignUpActivity extends AppCompatActivity {
     EditText email;
     EditText contact;
     EditText password;
+    EditText address;
     Button loginb,registerb;
 
-    private String nametxt,emailtxt,contacttxt,passtxt,id;
+    private String nametxt,emailtxt,contacttxt,passtxt,addresstxt,id;
 
     private ProgressBar progressBar;
 
@@ -50,10 +51,13 @@ public class SignUpActivity extends AppCompatActivity {
             Toast.makeText(this,e.toString(),Toast.LENGTH_LONG).show();
         }
 
+
+
         name=(EditText) findViewById(R.id.txtName);
         email=(EditText) findViewById(R.id.txtEmail);
         contact=(EditText) findViewById(R.id.txtcontact);
         password=(EditText) findViewById(R.id.txtpassword);
+        address=(EditText) findViewById(R.id.txtaddress);
         loginb=(Button)findViewById(R.id.btnLogin);
         registerb=(Button)findViewById(R.id.btnLogin2);
 
@@ -61,7 +65,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     public void submit(View view)
     {
-        Toast.makeText(this,"Error",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this,"Error",Toast.LENGTH_SHORT).show();
         validate();
     }
 
@@ -71,9 +75,10 @@ public class SignUpActivity extends AppCompatActivity {
         emailtxt=email.getText().toString();
         contacttxt=contact.getText().toString();
         passtxt=password.getText().toString();
+        addresstxt=address.getText().toString();
 
 
-        if (nametxt.isEmpty()  || emailtxt.isEmpty() || passtxt.isEmpty() || contacttxt.isEmpty())
+        if (nametxt.isEmpty()  || emailtxt.isEmpty() || passtxt.isEmpty() || contacttxt.isEmpty()||addresstxt.isEmpty())
         {
             Toast.makeText(this, "Please enter all thr details", Toast.LENGTH_SHORT).show();
 
@@ -111,7 +116,7 @@ public class SignUpActivity extends AppCompatActivity {
     {
         FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
         DatabaseReference myref=firebaseDatabase.getReference("Users");
-        Userprofile userprofile=new Userprofile(nametxt,emailtxt,contacttxt,passtxt);
+        Userprofile userprofile=new Userprofile(nametxt,emailtxt,contacttxt,passtxt,addresstxt);
         myref.child(id).setValue(userprofile);
     }
 
