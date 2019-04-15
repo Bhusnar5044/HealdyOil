@@ -29,7 +29,7 @@ public class SignUpActivity extends AppCompatActivity {
     EditText password;
     Button loginb,registerb;
 
-    private String nametxt,emailtxt,contacttxt,passtxt;
+    private String nametxt,emailtxt,contacttxt,passtxt,id;
 
     private ProgressBar progressBar;
 
@@ -42,7 +42,13 @@ public class SignUpActivity extends AppCompatActivity {
 
         progressBar=new ProgressBar(this);
 
-        firebaseAuth=FirebaseAuth.getInstance();
+        try {
+            firebaseAuth = FirebaseAuth.getInstance();
+        }
+        catch(Exception e)
+        {
+            Toast.makeText(this,e.toString(),Toast.LENGTH_LONG).show();
+        }
 
         name=(EditText) findViewById(R.id.txtName);
         email=(EditText) findViewById(R.id.txtEmail);
@@ -53,65 +59,65 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
-    public void register(View view)
+    public void submit(View view)
     {
-
-        if(validate())
-        {
-            firebaseAuth.createUserWithEmailAndPassword(emailtxt,passtxt)
-                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task)
-                        {
-                            if(task.isSuccessful())
-                            {
-                                insertDataIntoDatabase();
-                                Toast.makeText(getApplicationContext(), "Succesful", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                                insertDataIntoDatabase();
-                            }
-                            else {
-
-                                FirebaseAuthException e = (FirebaseAuthException)task.getException();
-                                Toast.makeText(SignUpActivity.this, "Failed Registration: "+e.getMessage(), Toast.LENGTH_SHORT).show();
-
-                            }
-                        }
-                    });
-
-        }
-        else
-        {
-            Toast.makeText(this,"Enter the all Details",Toast.LENGTH_SHORT).show();
-        }
+        Toast.makeText(this,"Error",Toast.LENGTH_SHORT).show();
+        validate();
     }
 
-    private void insertDataIntoDatabase()
+    private void validate()
     {
-        FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference=firebaseDatabase.getReference(firebaseAuth.getUid());
-        Members members=new Members(nametxt,emailtxt,contacttxt,passtxt);
-        databaseReference.setValue(members);
-        Toast.makeText(getApplicationContext(),"Data Inserted",Toast.LENGTH_SHORT).show();
-
-    }
-    public  boolean  validate()
-    {
-        boolean result=false;
         nametxt=name.getText().toString();
         emailtxt=email.getText().toString();
         contacttxt=contact.getText().toString();
         passtxt=password.getText().toString();
 
-        if(nametxt.isEmpty()&&emailtxt.isEmpty()&&passtxt.isEmpty())
+
+        if (nametxt.isEmpty()  || emailtxt.isEmpty() || passtxt.isEmpty() || contacttxt.isEmpty())
         {
-            Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please enter all thr details", Toast.LENGTH_SHORT).show();
+
         }
-        else {
-            result=true;
+        else
+        {
+
+            emailtxt=email.getText().toString().trim();
+            passtxt=password.getText().toString().trim();
+
+            firebaseAuth.createUserWithEmailAndPassword(emailtxt,passtxt).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful())
+                    {
+                        id=firebaseAuth.getUid();
+                        senduserData();
+
+                        Toast.makeText(SignUpActivity.this, "Registration Succssesfull", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(SignUpActivity.this,MainActivity.class));
+                    }
+                    else
+                    {
+                        FirebaseAuthException e=(FirebaseAuthException) task.getException();
+                        Toast.makeText(SignUpActivity.this, "Registration Failed"+e.toString(), Toast.LENGTH_LONG).show();
+
+                    }
+                }
+            });
         }
-        return result;
+
     }
 
+    private void senduserData()
+    {
+        FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
+        DatabaseReference myref=firebaseDatabase.getReference("Users");
+        Userprofile userprofile=new Userprofile(nametxt,emailtxt,contacttxt,passtxt);
+        myref.child(id).setValue(userprofile);
+    }
+
+    public void login1(View view){
+        Intent intent=new Intent(this,LoginActivity.class);
+        startActivity(intent);
+    }
 
 }

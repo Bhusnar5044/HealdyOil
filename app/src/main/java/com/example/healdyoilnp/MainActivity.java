@@ -71,20 +71,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_Login) {
             Intent intent=new Intent(this,LoginActivity.class);
             startActivity(intent);
             return true;
         }
         else if(id==R.id.action_Logout){
-            Intent intent=new Intent(this,SignUpActivity.class);
-            startActivity(intent);
+            Intent intent1=new Intent(this,SignUpActivity.class);
+            startActivity(intent1);
             return true;
         }
         else if(id==R.id.action_settings){
